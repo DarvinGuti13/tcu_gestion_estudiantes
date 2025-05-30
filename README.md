@@ -37,7 +37,7 @@ Django se comunica con Odoo usando peticiones HTTP a los siguientes endpoints p�
 
 ## ⚙️ Instrucciones generales de instalación
 
-Cada subproyecto tiene su propio entorno virtual y archivo `README.md` con instrucciones específicas. A continuación una vista general:
+Cada subproyecto tiene su propio entorno virtual y archivo `README.md` con instrucciones específicas.
 
 
 
