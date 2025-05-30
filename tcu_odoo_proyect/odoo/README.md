@@ -24,12 +24,15 @@ Este módulo fue desarrollado como parte de una prueba técnica para la gestión
 - pip, virtualenv o pipenv
 
 ---
+## ⚙️ Instalación del módulo Odoo
+
+1. Instala Odoo 17 en tu máquina (no incluido en este repositorio)
+
 
 ## ⚙️ Instalación del entorno Odoo
 
 1. **Ubica este proyecto localmente:**
 
-   ```bash
    cd tcu_odoo_proyect/odoo
 
 
@@ -41,3 +44,7 @@ pip install -r requirements.txt
 
 ## Ejecuta el servidor Odoo
 python odoo-bin -r db-user -w dbpassword --addons-path=addons,modules -d db-name
+
+activa el modo desarrollador
+Ve a **Aplicaciones** → actualiza la lista de apps
+Busca `TCU Estudiantes` y haz clic en **Instalar**
