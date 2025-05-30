@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <!-- Vista de formulario para Periodo del TCU -->
+    <record id="view_tcu_periodo_form" model="ir.ui.view">
+        <field name="name">tcu.periodo.form</field>
+        <field name="model">tcu.periodo</field>
+        <field name="arch" type="xml">
+            <form string="Periodo del TCU">
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="activo"/>
+                        <field name="anio" widget="radio"/>
+                        <field name="fecha_inicio"/>
+                        <field name="fecha_final"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Vista de lista (árbol) para Periodo del TCU -->
+    <record id="view_tcu_periodo_tree" model="ir.ui.view">
+        <field name="name">tcu.periodo.tree</field>
+        <field name="model">tcu.periodo</field>
+        <field name="arch" type="xml">
+            <tree string="Periodos del TCU">
+                <field name="name"/>
+                <field name="anio"/>
+                <field name="fecha_inicio"/>
+                <field name="fecha_final"/>
+                <field name="activo"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Acción del menú -->
+    <record id="action_tcu_periodo" model="ir.actions.act_window">
+        <field name="name">Periodos TCU</field>
+        <field name="res_model">tcu.periodo</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <!-- Menús -->
+    <menuitem id="menu_tcu_root" name="TCU"/>
+    <menuitem id="menu_tcu_periodo" name="Periodos" parent="menu_tcu_root" action="action_tcu_periodo"/>
+</odoo>

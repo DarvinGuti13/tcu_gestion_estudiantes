@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Resultado de Estado</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="bg-light">
+<div class="container py-5">
+    <h2 class="mb-4">Estado de la Solicitud</h2>
+
+    {% if error %}
+        <div class="alert alert-danger">{{ error }}</div>
+    {% else %}
+        <div class="alert alert-info">
+            <strong>Estado:</strong> {{ estado }}<br>
+            <strong>Observaciones:</strong> {{ observaciones }}
+        </div>
+    {% endif %}
+
+    <a href="{% url 'solicitud_tcu' %}" class="btn btn-secondary">Volver al formulario</a>
+</div>
+</body>
+</html>
+

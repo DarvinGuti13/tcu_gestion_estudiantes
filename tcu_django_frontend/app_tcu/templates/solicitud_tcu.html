@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Solicitud TCU</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <meta http-equiv="Cache-Control" content="no-store" />
+</head>
+<body class="bg-light">
+<div class="container py-5">
+    <h2 class="mb-4">Formulario de Solicitud de TCU</h2>
+
+    {% if messages %}
+        {% for message in messages %}
+            <div class="alert alert-{{ message.tags }}">{{ message }}</div>
+        {% endfor %}
+    {% endif %}
+
+    <form method="post">
+        {% csrf_token %}
+        <div class="row mb-3">
+            <div class="col">
+                <label for="carnet" class="form-label">Carné</label>
+                <input type="text" class="form-control" name="carnet" id="carnet" value="{{ carnet_actual|default:'' }}" required>
+            </div>
+            <div class="col-auto align-self-end">
+                <button type="submit" name="buscar" class="btn btn-primary">Buscar</button>
+            </div>
+        </div>
+
+        {% if datos_estudiante %}
+        <div class="mb-3">
+            <label for="nombre" class="form-label">Nombre</label>
+            <input type="text" class="form-control" name="name" id="nombre" value="{{ datos_estudiante.nombre }}" required>
+        </div>
+
+        <div class="mb-3">
+            <label for="correo" class="form-label">Correo</label>
+            <input type="email" class="form-control" name="correo" id="correo" value="{{ datos_estudiante.correo }}" required>
+        </div>
+
+        <div class="mb-3">
+            <label for="telefono" class="form-label">Teléfono</label>
+            <input type="text" class="form-control" name="telefono" id="telefono" value="{{ datos_estudiante.telefono }}" required>
+        </div>
+
+        <div class="mb-3">
+            <label for="identificacion" class="form-label">Identificación</label>
+            <input type="text" class="form-control" name="identificacion" id="identificacion" value="{{ datos_estudiante.identificacion }}" required>
+        </div>
+
+        <div class="mb-3">
+            <label for="lugar_tcu" class="form-label">Lugar donde hará el TCU</label>
+            <input type="text" class="form-control" name="lugar_tcu" id="lugar_tcu" required>
+        </div>
+
+        <div class="mb-3">
+            <label for="encargado_estudiante" class="form-label">Encargado del Estudiante</label>
+            <input type="text" class="form-control" name="encargado_estudiante" id="encargado_estudiante" required>
+        </div>
+
+        <div class="mb-3">
+            <label for="fecha_solicitud" class="form-label">Fecha de Solicitud</label>
+            <input type="date" class="form-control" name="fecha_solicitud" id="fecha_solicitud" required>
+        </div>
+
+        <div class="mb-3">
+            <label for="periodo" class="form-label">Periodo</label>
+            <select class="form-select" name="periodo" id="periodo" required>
+                {% if periodos %}
+                    <option value="">Seleccione un periodo</option>
+                    {% for periodo in periodos %}
+                        <option value="{{ periodo.id }}">{{ periodo.nombre }} - {{ periodo.anio }}</option>
+                    {% endfor %}
+                {% else %}
+                    <option value="">No hay periodos disponibles</option>
+                {% endif %}
+            </select>
+        </div>
+
+        <button type="submit" name="enviar" class="btn btn-success">Enviar Solicitud</button>
+        {% endif %}
+    </form>
+
+    <hr class="my-4">
+
+    <h5>Consultar Estado de Solicitud</h5>
+    <form method="post" action="{% url 'validar_estado' %}">
+        {% csrf_token %}
+        <div class="row mb-3">
+            <div class="col-4">
+                <input type="text" name="estudiante_id" class="form-control" placeholder="ID de estudiante" required>
+            </div>
+            <div class="col-auto">
+                <button class="btn btn-secondary">Consultar estado</button>
+            </div>
+        </div>
+    </form>
+</div>
+
+<script>
+    window.addEventListener('pageshow', function (event) {
+        if (event.persisted || (window.performance && window.performance.navigation.type === 2)) {
+            window.location.reload();
+        }
+    });
+
+    window.addEventListener('load', () => {
+        if (performance.navigation.type === 1) {
+            const carnetInput = document.querySelector("input[name='carnet']");
+            const alertBox = document.querySelector(".alert");
+            if (carnetInput) carnetInput.value = "";
+            if (alertBox) alertBox.remove();
+        }
+    });
+</script>
+
+</body>
+</html>
+
+
+
+
+
+

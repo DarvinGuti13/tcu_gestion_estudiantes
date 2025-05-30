@@ -1,0 +1,53 @@
+# ───── General ─────
+__pycache__/
+*.py[cod]
+*.log
+*.pot
+*.pyc
+
+# ───── Entorno virtual ─────
+venv/
+.env
+.venv/
+
+# ───── Archivos temporales de VSCode ─────
+.vscode/
+*.code-workspace
+
+# ───── Archivos de sistema ─────
+.DS_Store
+Thumbs.db
+
+# ───── Base de datos local ─────
+db.sqlite3
+
+# ───── Archivos compilados de Odoo ─────
+*.egg-info/
+*.swp
+*.bak
+
+# ───── Carpeta build/dist ─────
+build/
+dist/
+*.egg
+
+# ───── Archivos de dependencias y packaging (Odoo) ─────
+odoo/addons/*/static/.build/
+odoo/addons/*/static/lib/
+odoo/addons/*/node_modules/
+node_modules/
+
+# ───── Django ─────
+*.sqlite3
+*.pyo
+*.mo
+
+# ───── Bytecode compilado ─────
+*.so
+
+# ───── Archivos personales ─────
+*.sublime-project
+*.sublime-workspace
+
+# ───── Archivos de Docker (si usas) ─────
+docker-compose.override.yml

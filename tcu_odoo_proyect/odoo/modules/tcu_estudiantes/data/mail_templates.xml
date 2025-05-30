@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data noupdate="0">
+        <record id="tcu_estudiante_estado_mail_template" model="mail.template">
+            <field name="name">Notificación de Estado de Solicitud TCU</field>
+            <field name="model_id" ref="model_tcu_estudiante"/>
+            <field name="subject">${object.name} - Estado de tu solicitud TCU: ${object.estado_solicitud.title()}</field>
+            <field name="email_from">${(user.email or 'no-reply@tcu.local')}</field>
+            <field name="email_to">${object.correo}</field>
+            <field name="body_html">
+                <![CDATA[
+                <html>
+                    <body>
+                        <p>Estimado/a <strong>${object.name}</strong>,</p>
+                        <p>Tu solicitud para realizar el Trabajo Comunal Universitario (TCU) ha sido actualizada al siguiente estado: 
+                        <strong>${object.estado_solicitud.title()}</strong>.</p>
+                        
+                        <p><strong>Observaciones:</strong> ${object.observaciones or 'Sin comentarios'}</p>
+
+                        <p>Si tienes alguna duda, no dudes en comunicarte con el encargado de tu solicitud.</p>
+
+                        <p>Saludos cordiales,</p>
+                        <p>Equipo de Gestión TCU</p>
+                    </body>
+                </html>
+                ]]>
+            </field>
+        </record>
+    </data>
+</odoo>
+
+
+

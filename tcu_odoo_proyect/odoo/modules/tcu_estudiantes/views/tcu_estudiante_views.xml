@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="view_tcu_estudiante_form" model="ir.ui.view">
+        <field name="name">tcu.estudiante.form</field>
+        <field name="model">tcu.estudiante</field>
+        <field name="arch" type="xml">
+            <form string="Estudiante TCU">
+                <header>
+                    <!-- Botón para habilitar edición manual -->
+                    <button name="habilitar_edicion_manual"
+                            type="object"
+                            string="Habilitar edición manual"
+                            class="btn-secondary"
+                            modifiers='{"invisible": [["id", "=", false], ["edicion_manual", "=", true]]}'/>
+
+                    <!-- Botón para enviar notificación -->
+                    <button name="enviar_correo_estado"
+                            type="object"
+                            string="Enviar notificación"
+                            class="btn-primary"
+                            modifiers='{"invisible": [["mostrar_boton_envio", "=", false]]}'/>
+                </header>
+
+                <sheet>
+                    <!-- Campo invisible requerido para los modifiers -->
+                    <field name="edicion_manual" invisible="1"/>
+
+                    <group>
+                        <field name="name"/>
+                        <field name="identificacion"/>
+                        <field name="carnet"/>
+                        <field name="correo"/>
+                        <field name="telefono"/>
+                    </group>
+
+                    <group string="Solicitud">
+                        <field name="lugar_tcu"/>
+                        <field name="encargado_estudiante"/>
+                        <field name="fecha_solicitud"/>
+                        <field name="periodo_id"/>
+                        <field name="estado_solicitud"/>
+                        <field name="observaciones"/>
+                        <field name="carta_aceptacion" filename="nombre_carta"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_tcu_estudiante_tree" model="ir.ui.view">
+        <field name="name">tcu.estudiante.tree</field>
+        <field name="model">tcu.estudiante</field>
+        <field name="arch" type="xml">
+            <tree string="Estudiantes TCU">
+                <field name="name"/>
+                <field name="identificacion"/>
+                <field name="carnet"/>
+                <field name="estado_solicitud"/>
+                <field name="fecha_solicitud"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="action_tcu_estudiante" model="ir.actions.act_window">
+        <field name="name">Estudiantes TCU</field>
+        <field name="res_model">tcu.estudiante</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem id="menu_tcu_estudiante" name="Estudiantes" parent="menu_tcu_root" action="action_tcu_estudiante"/>
+</odoo>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
